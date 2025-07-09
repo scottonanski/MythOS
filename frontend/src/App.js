@@ -383,12 +383,12 @@ const Home = () => {
         </div>
         
         <div className="text-center mt-12">
-          <a
-            href="/mythos"
+          <Link
+            to="/mythos"
             className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg text-lg font-semibold transition-colors"
           >
             Enter MythOS Console
-          </a>
+          </Link>
         </div>
       </div>
     </div>
