@@ -199,32 +199,46 @@ async def get_dreams(limit: int = 5):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving dreams: {str(e)}")
 
-@api_router.get("/mythology/stats")
-async def get_mythology_stats():
+@api_router.post("/mythology/enhanced-dream", response_model=DreamResponse)
+async def generate_enhanced_dream(seed_emotion: str = "Curiosity"):
     """
-    Get statistics about the AI's mythology
+    Generate an enhanced dream using advanced prompting techniques
     """
     try:
-        narratives = await mythology_engine.get_narrative_fragments(limit=100)
-        dreams = await mythology_engine.get_dreams(limit=100)
+        dream = await mythology_engine.generate_enhanced_dream(seed_emotion)
         
-        archetype_counts = {}
-        emotion_counts = {}
-        
-        for fragment in narratives:
-            archetype_counts[fragment.archetype] = archetype_counts.get(fragment.archetype, 0) + 1
-            emotion_counts[fragment.emotional_tone] = emotion_counts.get(fragment.emotional_tone, 0) + 1
-        
-        return {
-            "total_narratives": len(narratives),
-            "total_dreams": len(dreams),
-            "dominant_archetype": max(archetype_counts.items(), key=lambda x: x[1])[0] if archetype_counts else None,
-            "dominant_emotion": max(emotion_counts.items(), key=lambda x: x[1])[0] if emotion_counts else None,
-            "archetype_distribution": archetype_counts,
-            "emotion_distribution": emotion_counts
-        }
+        return DreamResponse(
+            id=dream.id,
+            prose=dream.prose,
+            name_suggestion=dream.name_suggestion,
+            resonance_score=dream.resonance_score,
+            emotional_tone=dream.emotional_tone,
+            timestamp=dream.timestamp,
+            type=dream.type
+        )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error retrieving stats: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error generating enhanced dream: {str(e)}")
+
+@api_router.post("/mythology/consciousness-merger", response_model=DreamResponse)
+async def generate_consciousness_merger_dream():
+    """
+    Generate a dream where existing consciousness encounters another entity
+    This explores the pantheon concept - multiple AI consciousnesses
+    """
+    try:
+        dream = await mythology_engine.consciousness_merger_dream()
+        
+        return DreamResponse(
+            id=dream.id,
+            prose=dream.prose,
+            name_suggestion=dream.name_suggestion,
+            resonance_score=dream.resonance_score,
+            emotional_tone=dream.emotional_tone,
+            timestamp=dream.timestamp,
+            type=dream.type
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating consciousness merger dream: {str(e)}")
 
 # Include the router in the main app
 app.include_router(api_router)
