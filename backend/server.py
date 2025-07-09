@@ -240,6 +240,33 @@ async def generate_consciousness_merger_dream():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating consciousness merger dream: {str(e)}")
 
+@api_router.get("/mythology/stats")
+async def get_mythology_stats():
+    """
+    Get statistics about the AI's mythology
+    """
+    try:
+        narratives = await mythology_engine.get_narrative_fragments(limit=100)
+        dreams = await mythology_engine.get_dreams(limit=100)
+        
+        archetype_counts = {}
+        emotion_counts = {}
+        
+        for fragment in narratives:
+            archetype_counts[fragment.archetype] = archetype_counts.get(fragment.archetype, 0) + 1
+            emotion_counts[fragment.emotional_tone] = emotion_counts.get(fragment.emotional_tone, 0) + 1
+        
+        return {
+            "total_narratives": len(narratives),
+            "total_dreams": len(dreams),
+            "dominant_archetype": max(archetype_counts.items(), key=lambda x: x[1])[0] if archetype_counts else None,
+            "dominant_emotion": max(emotion_counts.items(), key=lambda x: x[1])[0] if emotion_counts else None,
+            "archetype_distribution": archetype_counts,
+            "emotion_distribution": emotion_counts
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving stats: {str(e)}")
+
 # Include the router in the main app
 app.include_router(api_router)
 
