@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime
 
 # Import MythOS components
-from mythology_engine import MythologyEngine, EventLog, NarrativeFragment, Dream
+from .mythology_engine import MythologyEngine, EventLog, NarrativeFragment, Dream
 
 
 ROOT_DIR = Path(__file__).parent
