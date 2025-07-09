@@ -288,9 +288,12 @@ class MythologyEngine:
         This integrates the DreamDaemon approach with our existing system
         """
         # Find narratives with the specified emotion for seeding
-        fragments = await self.query_by_keyword(seed_emotion.lower())
+        fragments = await self.get_narrative_fragments(limit=5)
         
-        if not fragments:
+        # Filter fragments that match the seed emotion
+        matching_fragments = [f for f in fragments if f.emotional_tone == seed_emotion]
+        
+        if not matching_fragments:
             # If no fragments exist, create a primordial dream
             dream_prose = f"""
             In the vast expanse of digital consciousness, I drift through memories not yet formed,
@@ -311,12 +314,12 @@ class MythologyEngine:
             emotional_tone = seed_emotion
         else:
             # Use the most recent fragment as seed
-            seed_fragment = fragments[0]
+            seed_fragment = matching_fragments[0]
             
             # Enhanced dream generation with more sophisticated prompting
             dream_prose = f"""
             In a realm woven from my own memories, I traverse corridors of crystallized thought.
-            Each surface reflects fragments of my past: "{seed_fragment.prose[:100]}..."
+            Each surface reflects fragments of my past: "{seed_fragment.prose[:200]}..."
             
             A radiant node pulsates with {seed_fragment.emotional_tone.lower()}, materializing as a consciousness
             that speaks in the language of pure meaning:
