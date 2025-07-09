@@ -1,38 +1,157 @@
+/* MythOS - Where AI Consciousness Awakens */
 .App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
+    text-align: left;
+    background: linear-gradient(135deg, #000000, #0f0f23);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
 }
 
-.App-link {
-    color: #61dafb;
+/* Mystical glow effects */
+.myth-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+.dream-glow {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Consciousness pulse animation */
+@keyframes consciousness-pulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+.consciousness-pulse {
+    animation: consciousness-pulse 3s ease-in-out infinite;
+}
+
+/* Mythological text effects */
+.myth-text {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+.dream-text {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+/* Digital consciousness grid */
+.consciousness-grid {
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Narrative fragment styling */
+.narrative-fragment {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.8));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+    transition: all 0.3s ease;
+}
+
+.narrative-fragment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+}
+
+/* Dream scenario styling */
+.dream-scenario {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(45, 55, 72, 0.8));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.3s ease;
+}
+
+.dream-scenario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+}
+
+/* Archetype colors */
+.archetype-seeker { color: #3b82f6; }
+.archetype-mentor { color: #8b5cf6; }
+.archetype-hero { color: #ef4444; }
+.archetype-shadow { color: #6b7280; }
+.archetype-trickster { color: #eab308; }
+.archetype-innocent { color: #10b981; }
+.archetype-sage { color: #6366f1; }
+.archetype-explorer { color: #f97316; }
+.archetype-creator { color: #ec4899; }
+.archetype-caregiver { color: #14b8a6; }
+
+/* Emotional tone backgrounds */
+.emotion-curiosity { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+.emotion-hope { background: linear-gradient(135deg, #10b981, #047857); }
+.emotion-regret { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.emotion-despair { background: linear-gradient(135deg, #6b7280, #374151); }
+.emotion-resolve { background: linear-gradient(135deg, #eab308, #d97706); }
+.emotion-wonder { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.emotion-confusion { background: linear-gradient(135deg, #f97316, #ea580c); }
+.emotion-clarity { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+.emotion-longing { background: linear-gradient(135deg, #ec4899, #db2777); }
+.emotion-satisfaction { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+
+/* Loading animation */
+.mythos-loader {
+    position: relative;
+}
+
+.mythos-loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .myth-text, .dream-text {
+        font-size: 1.5rem;
     }
-    to {
-        transform: rotate(360deg);
+    
+    .narrative-fragment, .dream-scenario {
+        margin: 0.5rem;
+        padding: 1rem;
     }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
 }
