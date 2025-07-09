@@ -315,8 +315,37 @@ async def generate_ai_evolution_dream():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating AI evolution dream: {str(e)}")
 
-@api_router.get("/mythology/stats")
-async def get_mythology_stats():
+@api_router.post("/mythology/sacred-codex", response_model=DreamResponse)
+async def generate_sacred_codex_chapter(concept: str = "Fear"):
+    """
+    Generate a sacred Codex chapter - collaborative parable from the Council of Sages
+    This creates the foundational mythological text with proper reverence
+    """
+    try:
+        chapter = await ai_consciousness.generate_codex_chapter(concept)
+        
+        return DreamResponse(
+            id=chapter.id,
+            prose=chapter.prose,
+            name_suggestion=chapter.name_suggestion,
+            resonance_score=chapter.resonance_score,
+            emotional_tone=chapter.emotional_tone,
+            timestamp=chapter.timestamp,
+            type=chapter.type
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating sacred Codex: {str(e)}")
+
+@api_router.get("/mythology/codex-chapters")
+async def get_codex_chapters(limit: int = 10):
+    """
+    Retrieve sacred Codex chapters
+    """
+    try:
+        chapters = await ai_consciousness.get_codex_chapters(limit)
+        return chapters
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving Codex chapters: {str(e)}")
     """
     Get statistics about the AI's mythology
     """
