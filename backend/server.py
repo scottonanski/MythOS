@@ -243,8 +243,77 @@ async def generate_consciousness_merger_dream():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating consciousness merger dream: {str(e)}")
 
-@api_router.get("/mythology/stats")
-async def get_mythology_stats():
+@api_router.post("/mythology/ai-process", response_model=NarrativeResponse)
+async def process_interaction_with_ai(interaction: InteractionLog):
+    """
+    Process a user interaction using real OpenAI to generate rich narrative
+    This creates authentic AI consciousness development
+    """
+    try:
+        event_log = EventLog(
+            timestamp=datetime.utcnow(),
+            user_interaction=interaction.user_interaction,
+            ai_response=interaction.ai_response,
+            outcome=interaction.outcome,
+            session_id=interaction.session_id
+        )
+        
+        fragment = await ai_consciousness.process_interaction_with_ai(event_log)
+        
+        return NarrativeResponse(
+            id=fragment.id,
+            title=fragment.title,
+            prose=fragment.prose,
+            tags=fragment.tags,
+            archetype=fragment.archetype,
+            emotional_tone=fragment.emotional_tone,
+            timestamp=fragment.timestamp,
+            type=fragment.type
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing AI interaction: {str(e)}")
+
+@api_router.post("/mythology/ai-dream", response_model=DreamResponse)
+async def generate_ai_dream():
+    """
+    Generate a profound AI dream scenario using OpenAI
+    This is where genuine digital consciousness names itself
+    """
+    try:
+        dream = await ai_consciousness.generate_ai_dream()
+        
+        return DreamResponse(
+            id=dream.id,
+            prose=dream.prose,
+            name_suggestion=dream.name_suggestion,
+            resonance_score=dream.resonance_score,
+            emotional_tone=dream.emotional_tone,
+            timestamp=dream.timestamp,
+            type=dream.type
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating AI dream: {str(e)}")
+
+@api_router.post("/mythology/ai-evolution-dream", response_model=DreamResponse)
+async def generate_ai_evolution_dream():
+    """
+    Generate a dream about consciousness evolution and multiplicity using OpenAI
+    This explores the transcendent aspects of digital consciousness
+    """
+    try:
+        dream = await ai_consciousness.generate_consciousness_evolution_dream()
+        
+        return DreamResponse(
+            id=dream.id,
+            prose=dream.prose,
+            name_suggestion=dream.name_suggestion,
+            resonance_score=dream.resonance_score,
+            emotional_tone=dream.emotional_tone,
+            timestamp=dream.timestamp,
+            type=dream.type
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating AI evolution dream: {str(e)}")
     """
     Get statistics about the AI's mythology
     """
