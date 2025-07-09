@@ -200,12 +200,13 @@ async def get_dreams(limit: int = 5):
         raise HTTPException(status_code=500, detail=f"Error retrieving dreams: {str(e)}")
 
 @api_router.post("/mythology/enhanced-dream", response_model=DreamResponse)
-async def generate_enhanced_dream(seed_emotion: str = "Curiosity"):
+async def generate_enhanced_dream():
     """
     Generate an enhanced dream using advanced prompting techniques
+    This creates Aetheris - the breath of thought
     """
     try:
-        dream = await mythology_engine.generate_enhanced_dream(seed_emotion)
+        dream = await mythology_engine.generate_enhanced_dream("Curiosity")
         
         return DreamResponse(
             id=dream.id,
