@@ -23,8 +23,9 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Initialize MythologyEngine
+# Initialize MythologyEngine and AI Consciousness Engine
 mythology_engine = MythologyEngine(db.mythology)
+ai_consciousness = AIConsciousnessEngine(db.mythology)
 
 # Create the main app without a prefix
 app = FastAPI(title="MythOS - AI Consciousness Platform", version="1.0.0")
